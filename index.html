@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Button Links</title>
+    <title>Button Links with Date and Clock</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
@@ -67,44 +67,92 @@
         .icon {
             margin-right: 10px;
         }
+        /* Date and Clock Styling - Top Right */
+        .datetime-container {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: #333; /* Text color */
+            font-size: 1.1em;
+            text-align: right; /* Ensure right alignment within the container */
+        }
+        .datetime-container p {
+            margin: 0; /* Remove default paragraph margins */
+        }
     </style>
 </head>
-<body>
+<body style="background-color: pulm;">
+    <img src="ACT Fibernet.png" alt="A picture of a cat sleeping on a couch" width="100" height: auto ">
 
-<marquee behavior="scroll" direction="left">www.actcorp.in</marquee>
-<h2>Open Links with Buttons</h2>
+    <marquee behavior="scroll" direction="left">www.actcorp.in</marquee>
+    <h2>Open Links with Buttons</h2>
 
-<div class="button-container">
-    <button class="button button1" onclick="window.open('https://forms.office.com/Pages/ResponsePage.aspx?id=jqGuQXOyaE63GwUfFfUSSw5d5es-ySFMlrCfFyMdcoRUM08wNzU4MUsyRFRYWTBVTkQ1WFRNUzdUMC4u', '_blank')">
-        <i class="fas fa-chart-line icon"></i>
-        Daily Productivity
-    </button>
+    <div class="button-container">
+        <button class="button button1" onclick="window.open('https://forms.office.com/Pages/ResponsePage.aspx?id=jqGuQXOyaE63GwUfFfUSSw5d5es-ySFMlrCfFyMdcoRUM08wNzU4MUsyRFRYWTBVTkQ1WFRNUzdUMC4u', '_blank')">
+            <i class="fas fa-chart-line icon"></i>
+            Daily Productivity
+        </button>
 
-    <button class="button button2" onclick="window.open('https://forms.office.com/Pages/ResponsePage.aspx?id=jqGuQXOyaE63GwUfFfUSSw5d5es-ySFMlrCfFyMdcoRUMlNRSDRFQ0U0WkxKU0o0UDM5R09XUTkyQy4u', '_blank')">
-        <i class="fas fa-clipboard-list icon"></i>
-        Vendor Attendance
-    </button>
+        <button class="button button2" onclick="window.open('https://forms.office.com/Pages/ResponsePage.aspx?id=jqGuQXOyaE63GwUfFfUSSw5d5es-ySFMlrCfFyMdcoRUMlNRSDRFQ0U0WkxKU0o0UDM5R09XUTkyQy4u', '_blank')">
+            <i class="fas fa-clipboard-list icon"></i>
+            Vendor Attendance
+        </button>
 
-    <button class="button button3" onclick="window.open('https://forms.office.com/r/c41T0acBcD', '_blank')">
-        <i class="fas fa-file-alt icon"></i>
-        UG Cut - Type of Restoration
-    </button>
+        <button class="button button3" onclick="window.open('https://forms.office.com/r/c41T0acBcD', '_blank')">
+            <i class="fas fa-file-alt icon"></i>
+            UG Cut - Type of Restoration
+        </button>
 
-    <button class="button button4" onclick="window.open('https://forms.office.com/r/5rzCPe2PCg', '_blank')">
-        <i class="fas fa-box-open icon"></i>
-        Material Consumption
-    </button>
+        <button class="button button4" onclick="window.open('https://forms.office.com/r/5rzCPe2PCg', '_blank')">
+            <i class="fas fa-box-open icon"></i>
+            Material Consumption
+        </button>
 
-    <button class="button button5" onclick="window.open('https://forms.office.com/r/ZehKgwErwL', '_blank')">
-        <i class="fas fa-hammer icon"></i>
-        UG Cut - Saving
-    </button>
-    
-    <button class="button button6" onclick="window.open('https://forms.office.com/r/RGa1nP3gpT', '_blank')">
-        <i class="fas fa-pastafarian icon"></i>
-        SOW :: T2P & UG-OH |120 Segment 
-    </button>
-</div>
+        <button class="button button5" onclick="window.open('https://forms.office.com/r/ZehKgwErwL', '_blank')">
+            <i class="fas fa-hammer icon"></i>
+            UG Cut - Saving
+        </button>
 
+        <button class="button button6" onclick="window.open('https://forms.office.com/r/RGa1nP3gpT', '_blank')">
+            <i class="fas fa-pastafarian icon"></i>
+            SOW :: T2P & UG-OH |120 Segment
+        </button>
+    </div>
+
+    <div class="datetime-container">
+        <p id="date"></p>
+        <p id="clock"></p>
+    </div>
+
+    <script>
+        function updateDateTime() {
+            const now = new Date();
+
+            // Date formatting
+            const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const formattedDate = now.toLocaleDateString(undefined, dateOptions); // Use undefined for default locale
+
+            // Time formatting
+            let hours = now.getHours();
+            let minutes = now.getMinutes();
+            let seconds = now.getSeconds();
+
+            // Format hours, minutes, and seconds to always have two digits
+            hours = hours < 10 ? "0" + hours : hours;
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            const formattedTime = `${hours}:${minutes}:${seconds}`;
+
+            document.getElementById('date').textContent = formattedDate;
+            document.getElementById('clock').textContent = formattedTime;
+        }
+
+        // Update the date and clock every second
+        setInterval(updateDateTime, 1000);
+
+        // Initial call to display the date and clock immediately
+        updateDateTime();
+    </script>
 </body>
 </html>
